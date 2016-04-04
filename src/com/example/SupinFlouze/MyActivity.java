@@ -26,7 +26,7 @@ public class MyActivity extends Activity {
      */
 
 
-    ListView listView ;
+    public  ListView listView ;
 
    public LongOperation ope = null;
 
@@ -64,13 +64,15 @@ public class MyActivity extends Activity {
 
         mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("JEU").setContent(R.id.tab1));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SHOP").setContent(R.id.tab2));
-        mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("CLASSEMENT").setContent(R.id.tab3));
+        mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("Disclamer").setContent(R.id.tab3));
 
         mTabHost.setCurrentTab(0);
 
         listView = (ListView) findViewById(R.id.list);
 
         listView.setAdapter(new ListViewAdaptater(this,ope.gameObject ));
+
+
 
 
 

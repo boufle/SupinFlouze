@@ -1,14 +1,16 @@
 package com.example.SupinFlouze.Thread;
 
 import android.os.AsyncTask;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
+import com.example.SupinFlouze.Adaptater.ListViewAdaptater;
 import com.example.SupinFlouze.Bonus.GameObject;
 import com.example.SupinFlouze.Bonus.Shop;
 import com.example.SupinFlouze.MyActivity;
+import com.example.SupinFlouze.R;
 
-import java.util.ArrayList;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
  * com.example.SupinFlouze.Thread
@@ -46,7 +48,33 @@ public class LongOperation  {
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        myActivity.getActionBar().setTitle("SupinFlouz: " + gameObject.Supinflouze + " (+" + finalCPM + "$/s)");
+                        myActivity.getActionBar().setTitle("SupinFlouz: " + format(gameObject.Supinflouze) + " (" + format(finalCPM) + "$/s)");
+                        ListViewAdaptater adat = (ListViewAdaptater) myActivity.listView.getAdapter();
+                        try {
+                            for (int i =  myActivity.listView.getFirstVisiblePosition(); i <=  myActivity.listView.getLastVisiblePosition(); i++) {
+                                View ve=    myActivity.listView.getChildAt(i);
+
+                                Button button = (Button) ve.findViewById(R.id.button);
+                                if (myActivity.ope.testBuyable(gameObject.getData().get( myActivity.listView.getPositionForView(ve)).getPrix())){
+                                    if(!button.isEnabled()){
+                                        button.setEnabled(true);
+
+                                    }
+
+                                }else {
+
+                                    if(button.isEnabled()){
+                                        button.setEnabled(false);
+
+                                    }
+                                }
+                            }
+                        }catch (NullPointerException e){
+
+                        }
+
+
+
 
                     }
                 });
@@ -60,12 +88,12 @@ public class LongOperation  {
 
     public void addflouzz(Integer i) {
         gameObject.Supinflouze+=i;
-        myActivity.getActionBar().setTitle("SupinFlouz: " + gameObject.Supinflouze + " (+" + finalCPM + "$/s)");
+        myActivity.getActionBar().setTitle("SupinFlouz: " + format(gameObject.Supinflouze) + " (" + format(finalCPM) + "$/s)");
 
     }
     public void removeflouzz(Integer i) {
         gameObject.Supinflouze-=i;
-        myActivity.getActionBar().setTitle("SupinFlouz: " + gameObject.Supinflouze + " (+" + finalCPM + "$/s)");
+        myActivity.getActionBar().setTitle("SupinFlouz: " + format(gameObject.Supinflouze) + " (" + format(finalCPM) + "$/s)");
 
     }
 
@@ -79,7 +107,30 @@ public class LongOperation  {
 
     }
 
+    private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
+    static {
+        suffixes.put(1_000L, "k");
+        suffixes.put(1_000_000L, "M");
+        suffixes.put(1_000_000_000L, "G");
+        suffixes.put(1_000_000_000_000L, "T");
+        suffixes.put(1_000_000_000_000_000L, "P");
+        suffixes.put(1_000_000_000_000_000_000L, "E");
+    }
 
+    public static String format(long value) {
+        //Long.MIN_VALUE == -Long.MIN_VALUE so we need an adjustment here
+        if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
+        if (value < 0) return "-" + format(-value);
+        if (value < 1000) return Long.toString(value); //deal with easy case
+
+        Map.Entry<Long, String> e = suffixes.floorEntry(value);
+        Long divideBy = e.getKey();
+        String suffix = e.getValue();
+
+        long truncated = value / (divideBy / 10); //the number part of the output times 10
+        boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
+        return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
+    }
     public void addflouzzsimple() {
         addflouzz(     gameObject.getData().get(0).getCount()* gameObject.getData().get(0).getUnitaire() );
     }

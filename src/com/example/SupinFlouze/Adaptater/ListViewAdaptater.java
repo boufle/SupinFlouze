@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.SupinFlouze.Bonus.GameObject;
 import com.example.SupinFlouze.Bonus.Shop;
@@ -45,6 +46,7 @@ public class ListViewAdaptater extends BaseAdapter {
         return position;
     }
 
+
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
         // TODO Auto-generated method stub
@@ -63,9 +65,22 @@ public class ListViewAdaptater extends BaseAdapter {
 
         }else {
             texttt.setText("" + data.get(position).getPrix() +"$ / " + data.get(position).getCount()*data.get(position).getUnitaire() +"$/s ->"+  data.get(position).getUnitaire()*(data.get(position).getCount()+1)+"$/s" );
-
         }
 
+            Button button = (Button) vi.findViewById(R.id.button);
+            if (context.ope.testBuyable(data.get(position).getPrix())){
+                if(!button.isEnabled()){
+                    button.setEnabled(true);
+
+                }
+
+            }else {
+
+                if(button.isEnabled()){
+                    button.setEnabled(false);
+
+                }
+            }
            vi.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
