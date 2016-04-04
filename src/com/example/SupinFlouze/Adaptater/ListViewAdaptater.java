@@ -6,15 +6,18 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.example.SupinFlouze.Bonus.Shop;
 import com.example.SupinFlouze.R;
+
+import java.util.ArrayList;
 
 public class ListViewAdaptater extends BaseAdapter {
 
     Context context;
-    String[] data;
+    ArrayList<Shop> data = new ArrayList<>();
     private static LayoutInflater inflater = null;
 
-    public ListViewAdaptater(Context context, String[] data) {
+    public ListViewAdaptater(Context context,ArrayList<Shop> data) {
         // TODO Auto-generated constructor stub
         this.context = context;
         this.data = data;
@@ -25,13 +28,13 @@ public class ListViewAdaptater extends BaseAdapter {
     @Override
     public int getCount() {
         // TODO Auto-generated method stub
-        return data.length;
+        return data.size();
     }
 
     @Override
     public Object getItem(int position) {
         // TODO Auto-generated method stub
-        return data[position];
+        return data.get(position);
     }
 
     @Override
@@ -46,8 +49,15 @@ public class ListViewAdaptater extends BaseAdapter {
         View vi = convertView;
         if (vi == null)
             vi = inflater.inflate(R.layout.row, null);
-        TextView text = (TextView) vi.findViewById(R.id.text);
-        text.setText(data[position]);
+        TextView text = (TextView) vi.findViewById(R.id.name);
+        text.setText(data.get(position).getName());
+
+        TextView textt = (TextView) vi.findViewById(R.id.count);
+        textt.setText(data.get(position).getCount().toString());
+
+        TextView texttt = (TextView) vi.findViewById(R.id.data);
+        texttt.setText("Prix : " + data.get(position).getPrix() +" multi : " +  data.get(position).getMultiplicateur());
+
         return vi;
     }
 }

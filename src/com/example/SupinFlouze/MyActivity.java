@@ -7,6 +7,11 @@ import android.view.Menu;
 import android.view.View;
 import android.widget.*;
 import com.example.SupinFlouze.Adaptater.*;
+import com.example.SupinFlouze.Bonus.Shop;
+
+import java.util.ArrayList;
+
+import static com.example.SupinFlouze.utils.getitem;
 
 public class MyActivity extends Activity {
     /**
@@ -34,15 +39,14 @@ public class MyActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.list);
 
-        listView.setAdapter(new ListViewAdaptater(this, new String[] { "data1",
-                "data2" }));
+        listView.setAdapter(new ListViewAdaptater(this, getitem()));
 
 
     }
 
     public void SupinFlouzOnClick(View view){
 
-        Supinflouze += 1;
+            Supinflouze += 1;
         getActionBar().setTitle("SupinFlouze : "+Supinflouze);
     }
 
