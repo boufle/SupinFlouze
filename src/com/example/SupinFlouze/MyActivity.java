@@ -50,7 +50,7 @@ public class MyActivity extends Activity {
     }
 
     public void SupinFlouzOnClick(View view){
-        ope.addflouzz(1);
+        ope.addflouzzsimple();
     }
 
 

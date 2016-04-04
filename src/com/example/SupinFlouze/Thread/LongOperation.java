@@ -29,9 +29,15 @@ public class LongOperation  {
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
-
+                int cont =0 ;
                 for (Shop shop : shops) {
-                    flouzz+=( shop.getCount()*shop.getUnitaire());
+                    if(cont == 0){
+
+                    }else {
+                        flouzz+=( shop.getCount()*shop.getUnitaire());
+                    }
+
+
                 }
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
@@ -69,4 +75,8 @@ public class LongOperation  {
 
     }
 
+
+    public void addflouzzsimple() {
+        addflouzz(    shops.get(0).getCount()*shops.get(0).getUnitaire() );
+    }
 }
