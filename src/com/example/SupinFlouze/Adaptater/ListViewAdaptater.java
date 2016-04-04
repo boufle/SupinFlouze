@@ -58,7 +58,13 @@ public class ListViewAdaptater extends BaseAdapter {
         textt.setText(data.get(position).getCount().toString());
 
         TextView texttt = (TextView) vi.findViewById(R.id.data);
-        texttt.setText("Prix : " + data.get(position).getPrix() +" multi : " +  data.get(position).getUnitaire()*data.get(position).getCount() );
+        if(position ==0){
+            texttt.setText("" + data.get(position).getPrix() +"$ / " + data.get(position).getCount()*data.get(position).getUnitaire() +"$/clic ->"+  data.get(position).getUnitaire()*(data.get(position).getCount()+1)+"$/clic" );
+
+        }else {
+            texttt.setText("" + data.get(position).getPrix() +"$ / " + data.get(position).getCount()*data.get(position).getUnitaire() +"$/s ->"+  data.get(position).getUnitaire()*(data.get(position).getCount()+1)+"$/s" );
+
+        }
 
            vi.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
