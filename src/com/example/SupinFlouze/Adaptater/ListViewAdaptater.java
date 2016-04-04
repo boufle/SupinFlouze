@@ -5,19 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Button;
 import android.widget.TextView;
 import com.example.SupinFlouze.Bonus.Shop;
+import com.example.SupinFlouze.MyActivity;
 import com.example.SupinFlouze.R;
 
 import java.util.ArrayList;
 
 public class ListViewAdaptater extends BaseAdapter {
 
-    Context context;
+    MyActivity context;
     ArrayList<Shop> data = new ArrayList<>();
     private static LayoutInflater inflater = null;
 
-    public ListViewAdaptater(Context context,ArrayList<Shop> data) {
+    public ListViewAdaptater(MyActivity context, ArrayList<Shop> data) {
         // TODO Auto-generated constructor stub
         this.context = context;
         this.data = data;
@@ -57,6 +59,24 @@ public class ListViewAdaptater extends BaseAdapter {
 
         TextView texttt = (TextView) vi.findViewById(R.id.data);
         texttt.setText("Prix : " + data.get(position).getPrix() +" multi : " +  data.get(position).getMultiplicateur());
+
+           vi.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Shop item = (Shop) data.get(position);
+
+               if (context.ope.testBuyable(item.getPrix())){
+
+                   context.ope.removeflouzz(item.getPrix());
+                    item.setCount(item.getCount() + 1);
+                    item.setPrix(item.getMultiplicateur() * item.getPrix());
+                   notifyDataSetChanged();
+                   notifyDataSetInvalidated();
+                }
+            }
+        });
+
+
 
         return vi;
     }

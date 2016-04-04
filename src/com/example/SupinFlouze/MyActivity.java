@@ -23,7 +23,7 @@ public class MyActivity extends Activity {
 
     ListView listView ;
 
-    LongOperation ope = null;
+   public LongOperation ope = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,20 +46,6 @@ public class MyActivity extends Activity {
         listView.setAdapter(new ListViewAdaptater(this,item ));
 
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                Shop item = (Shop) listView.getAdapter().getItem(position);
-
-                if (ope.testBuyable(item.getPrix())){
-
-                    ope.removeflouzz(item.getPrix());
-                    item.setCount(item.getCount() + 1);
-                    item.setPrix(item.getMultiplicateur() * item.getPrix());
-                }
-
-            }
-        });
 
     }
 
