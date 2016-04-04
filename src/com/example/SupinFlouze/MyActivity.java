@@ -8,6 +8,7 @@ import android.view.View;
 import android.widget.*;
 import com.example.SupinFlouze.Adaptater.*;
 import com.example.SupinFlouze.Bonus.Shop;
+import com.example.SupinFlouze.Thread.LongOperation;
 
 import java.util.ArrayList;
 
@@ -21,16 +22,19 @@ public class MyActivity extends Activity {
 
 
     ListView listView ;
-    TabHost mTabHost;
-    int Supinflouze = 0;
 
+    LongOperation ope = null;
 
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        TabHost mTabHost; ArrayList<Shop> item = getitem();
+
+          ope = new LongOperation(item, this);
+
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
-        getActionBar().setTitle("SupinFlouz : " + Supinflouze);
+
         mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("JEU").setContent(R.id.tab1));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SHOP").setContent(R.id.tab2));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("CLASSEMENT").setContent(R.id.tab3));
@@ -39,15 +43,13 @@ public class MyActivity extends Activity {
 
         listView = (ListView) findViewById(R.id.list);
 
-        listView.setAdapter(new ListViewAdaptater(this, getitem()));
+        listView.setAdapter(new ListViewAdaptater(this,item ));
 
 
     }
 
     public void SupinFlouzOnClick(View view){
-
-            Supinflouze += 1;
-        getActionBar().setTitle("SupinFlouze : "+Supinflouze);
+        ope.addflouzz(1);
     }
 
 
