@@ -5,7 +5,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
-import android.widget.Button;
 import android.widget.TextView;
 import com.example.SupinFlouze.Bonus.Shop;
 import com.example.SupinFlouze.MyActivity;
@@ -58,7 +57,7 @@ public class ListViewAdaptater extends BaseAdapter {
         textt.setText(data.get(position).getCount().toString());
 
         TextView texttt = (TextView) vi.findViewById(R.id.data);
-        texttt.setText("Prix : " + data.get(position).getPrix() +" multi : " +  data.get(position).getMultiplicateur());
+        texttt.setText("Prix : " + data.get(position).getPrix() +" multi : " +  data.get(position).getUnitaire()*data.get(position).getCount() );
 
            vi.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override

@@ -14,14 +14,10 @@ public class utils {
 
     public static ArrayList<Shop> getitem(){
 
-       //String name, Integer count, Integer prix, Integer multiplicateur
+       //String name, Integer count, Integer prix, Integer multiplicateurprix, nombre
         ArrayList <Shop> list = new ArrayList<>();
-        list.add(new Shop("JPO", 0,2,3));
-        list.add(new Shop("Eleve1", 0,2,3));
-        list.add(new Shop("Eleve", 0,2,3));
-        list.add(new Shop("Eleve1", 0,2,3));
-        list.add(new Shop("Eleve", 0,2,3));
-        list.add(new Shop("Eleve1", 0,2,3));
+        list.add(new Shop("JPO", 0,50,2,5));
+        list.add(new Shop("Eleve", 0,6500,10,30));
         return list;
     }
 }

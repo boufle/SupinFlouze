@@ -12,13 +12,16 @@ public class Shop implements Serializable {
     public Integer count;
     public Integer prix;
     public Integer Multiplicateur;
+    private Integer unitaire;
 
 
-    public Shop(String name, Integer count, Integer prix, Integer multiplicateur) {
+    public Shop(String name, Integer count, Integer prix, Integer multiplicateur,Integer unitaire) {
         this.name = name;
         this.count = count;
         this.prix = prix;
         Multiplicateur = multiplicateur;
+        this.unitaire = unitaire;
+
     }
 
     public String getName() {
@@ -51,5 +54,9 @@ public class Shop implements Serializable {
 
     public void setMultiplicateur(Integer multiplicateur) {
         Multiplicateur = multiplicateur;
+    }
+
+    public Integer getUnitaire() {
+        return unitaire;
     }
 }

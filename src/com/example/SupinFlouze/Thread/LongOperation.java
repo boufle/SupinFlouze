@@ -31,7 +31,7 @@ public class LongOperation  {
             public void run() {
 
                 for (Shop shop : shops) {
-                    flouzz+=( shop.getCount()*shop.getMultiplicateur());
+                    flouzz+=( shop.getCount()*shop.getUnitaire());
                 }
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
