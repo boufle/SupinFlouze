@@ -32,10 +32,10 @@ public class LongOperation  {
                 int cont =0 ;
                 for (Shop shop : shops) {
                     if(cont == 0){
-
+                        cont=1;
                     }else {
                         flouzz+=( shop.getCount()*shop.getUnitaire());
-                        cont=1;
+
                     }
 
 
