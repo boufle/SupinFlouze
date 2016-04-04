@@ -16,6 +16,7 @@ public class GameObject implements Serializable {
 
    public Integer Supinflouze = 0;
 
+
     public Integer getSupinflouze() {
         return Supinflouze;
     }

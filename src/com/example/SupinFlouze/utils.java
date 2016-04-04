@@ -39,6 +39,7 @@ public class utils {
     }
     public static GameObject basegame( ){
         GameObject game = new GameObject();
+
         ArrayList <Shop> list = new ArrayList<>();
         list.add(new Shop("Putaclic", 1,5,1.4,1));
         list.add(new Shop("JPO", 0,50,1.6,5));

@@ -51,6 +51,7 @@ public class LongOperation  {
                         myActivity.getActionBar().setTitle("SupinFlouz: " + format(gameObject.Supinflouze) + " (" + format(finalCPM) + "$/s)");
                         ListViewAdaptater adat = (ListViewAdaptater) myActivity.listView.getAdapter();
                         try {
+
                             for (int i =  myActivity.listView.getFirstVisiblePosition(); i <=  myActivity.listView.getLastVisiblePosition(); i++) {
                                 View ve=    myActivity.listView.getChildAt(i);
 

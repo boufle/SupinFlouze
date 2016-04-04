@@ -62,6 +62,7 @@ public class MyActivity extends Activity {
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
 
+
         mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("JEU").setContent(R.id.tab1));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SHOP").setContent(R.id.tab2));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("Disclamer").setContent(R.id.tab3));

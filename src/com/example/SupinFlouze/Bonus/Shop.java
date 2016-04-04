@@ -22,6 +22,7 @@ public class Shop implements Serializable {
         Multiplicateur = multiplicateur;
         this.unitaire = unitaire;
 
+
     }
 
     public String getName() {

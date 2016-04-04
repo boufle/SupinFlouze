@@ -67,6 +67,7 @@ public class ListViewAdaptater extends BaseAdapter {
             texttt.setText("" + data.get(position).getPrix() +"$ / " + data.get(position).getCount()*data.get(position).getUnitaire() +"$/s ->"+  data.get(position).getUnitaire()*(data.get(position).getCount()+1)+"$/s" );
         }
 
+
             Button button = (Button) vi.findViewById(R.id.button);
             if (context.ope.testBuyable(data.get(position).getPrix())){
                 if(!button.isEnabled()){
