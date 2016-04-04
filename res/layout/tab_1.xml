@@ -12,4 +12,5 @@
             android:onClick="SupinFlouzOnClick"
             android:src="@drawable/supiflouz" android:scaleType="fitCenter"/>
 
+
 </RelativeLayout>

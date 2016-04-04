@@ -18,7 +18,7 @@ public class LongOperation  {
 
     public GameObject gameObject = new GameObject();
     private MyActivity myActivity;
-
+      int finalCPM = 0 ;
     public LongOperation(GameObject gameObjectt,   MyActivity myActivity) {
 
 
@@ -29,20 +29,24 @@ public class LongOperation  {
             @Override
             public void run() {
                 int cont =0 ;
+                int CPM = 0 ;
                 for (Shop shop : gameObject.getData()) {
                     if(cont == 0){
                         cont=1;
                     }else {
-                        gameObject.Supinflouze+=( shop.getCount()*shop.getUnitaire());
+                        int data=  ( shop.getCount()*shop.getUnitaire());
+                        CPM +=data;
+                        gameObject.Supinflouze+=data;
 
                     }
 
 
                 }
+                  finalCPM = CPM;
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        myActivity.getActionBar().setTitle("SupinFlouz : " + gameObject.Supinflouze);
+                        myActivity.getActionBar().setTitle("SupinFlouz: " + gameObject.Supinflouze + " (+" + finalCPM + "$/s)");
 
                     }
                 });
@@ -56,12 +60,12 @@ public class LongOperation  {
 
     public void addflouzz(Integer i) {
         gameObject.Supinflouze+=i;
-        myActivity.getActionBar().setTitle("SupinFlouz : " + gameObject.Supinflouze);
+        myActivity.getActionBar().setTitle("SupinFlouz: " + gameObject.Supinflouze + " (+" + finalCPM + "$/s)");
 
     }
     public void removeflouzz(Integer i) {
         gameObject.Supinflouze-=i;
-        myActivity.getActionBar().setTitle("SupinFlouz : " + gameObject.Supinflouze);
+        myActivity.getActionBar().setTitle("SupinFlouz: " + gameObject.Supinflouze + " (+" + finalCPM + "$/s)");
 
     }
 
