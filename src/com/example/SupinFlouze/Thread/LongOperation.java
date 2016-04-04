@@ -58,4 +58,15 @@ public class LongOperation  {
         myActivity.getActionBar().setTitle("SupinFlouz : " + flouzz);
 
     }
+
+    public boolean testBuyable(Integer i){
+
+        if (flouzz >= i){
+            return true;
+        }
+
+        return false;
+
+    }
+
 }
