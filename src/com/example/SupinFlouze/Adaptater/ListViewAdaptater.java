@@ -68,7 +68,9 @@ public class ListViewAdaptater extends BaseAdapter {
 
                    context.ope.removeflouzz(item.getPrix());
                     item.setCount(item.getCount() + 1);
-                    item.setPrix(item.getMultiplicateur() * item.getPrix());
+                   Double value =  (item.getMultiplicateur() * item.getPrix());
+
+                    item.setPrix(value.intValue());
                    notifyDataSetChanged();
                    notifyDataSetInvalidated();
                 }

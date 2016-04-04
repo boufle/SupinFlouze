@@ -11,11 +11,11 @@ public class Shop implements Serializable {
     public String name ;
     public Integer count;
     public Integer prix;
-    public Integer Multiplicateur;
+    public Double Multiplicateur;
     private Integer unitaire;
 
 
-    public Shop(String name, Integer count, Integer prix, Integer multiplicateur,Integer unitaire) {
+    public Shop(String name, Integer count, Integer prix, Double multiplicateur,Integer unitaire) {
         this.name = name;
         this.count = count;
         this.prix = prix;
@@ -48,11 +48,11 @@ public class Shop implements Serializable {
         this.prix = prix;
     }
 
-    public Integer getMultiplicateur() {
+    public Double getMultiplicateur() {
         return Multiplicateur;
     }
 
-    public void setMultiplicateur(Integer multiplicateur) {
+    public void setMultiplicateur(Double multiplicateur) {
         Multiplicateur = multiplicateur;
     }
 
