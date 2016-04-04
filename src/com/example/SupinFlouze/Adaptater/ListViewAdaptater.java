@@ -6,6 +6,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.TextView;
+import com.example.SupinFlouze.Bonus.GameObject;
 import com.example.SupinFlouze.Bonus.Shop;
 import com.example.SupinFlouze.MyActivity;
 import com.example.SupinFlouze.R;
@@ -18,10 +19,10 @@ public class ListViewAdaptater extends BaseAdapter {
     ArrayList<Shop> data = new ArrayList<>();
     private static LayoutInflater inflater = null;
 
-    public ListViewAdaptater(MyActivity context, ArrayList<Shop> data) {
+    public ListViewAdaptater(MyActivity context, GameObject data) {
         // TODO Auto-generated constructor stub
         this.context = context;
-        this.data = data;
+        this.data = data.getData();
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     }

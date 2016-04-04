@@ -2,6 +2,7 @@ package com.example.SupinFlouze.Thread;
 
 import android.os.AsyncTask;
 import android.widget.Toast;
+import com.example.SupinFlouze.Bonus.GameObject;
 import com.example.SupinFlouze.Bonus.Shop;
 import com.example.SupinFlouze.MyActivity;
 
@@ -15,26 +16,24 @@ import java.util.TimerTask;
  */
 public class LongOperation  {
 
-    private  ArrayList<Shop> shops;
+    public GameObject gameObject = new GameObject();
     private MyActivity myActivity;
-    private Integer flouzz = 0 ;
-    Integer Supinflouze = 0;
 
-    public LongOperation(ArrayList<Shop> shops,   MyActivity myActivity) {
+    public LongOperation(GameObject gameObjectt,   MyActivity myActivity) {
 
 
-        this.shops = shops;
+        this.gameObject = gameObjectt;
         this.myActivity = myActivity;
         ;
         new Timer().scheduleAtFixedRate(new TimerTask() {
             @Override
             public void run() {
                 int cont =0 ;
-                for (Shop shop : shops) {
+                for (Shop shop : gameObject.getData()) {
                     if(cont == 0){
                         cont=1;
                     }else {
-                        flouzz+=( shop.getCount()*shop.getUnitaire());
+                        gameObject.Supinflouze+=( shop.getCount()*shop.getUnitaire());
 
                     }
 
@@ -43,7 +42,7 @@ public class LongOperation  {
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
-                        myActivity.getActionBar().setTitle("SupinFlouz : " + flouzz);
+                        myActivity.getActionBar().setTitle("SupinFlouz : " + gameObject.Supinflouze);
 
                     }
                 });
@@ -56,19 +55,19 @@ public class LongOperation  {
     }
 
     public void addflouzz(Integer i) {
-        flouzz+=i;
-        myActivity.getActionBar().setTitle("SupinFlouz : " + flouzz);
+        gameObject.Supinflouze+=i;
+        myActivity.getActionBar().setTitle("SupinFlouz : " + gameObject.Supinflouze);
 
     }
     public void removeflouzz(Integer i) {
-        flouzz-=i;
-        myActivity.getActionBar().setTitle("SupinFlouz : " + flouzz);
+        gameObject.Supinflouze-=i;
+        myActivity.getActionBar().setTitle("SupinFlouz : " + gameObject.Supinflouze);
 
     }
 
     public boolean testBuyable(Integer i){
 
-        if (flouzz >= i){
+        if (gameObject.Supinflouze >= i){
             return true;
         }
 
@@ -78,6 +77,6 @@ public class LongOperation  {
 
 
     public void addflouzzsimple() {
-        addflouzz(    shops.get(0).getCount()*shops.get(0).getUnitaire() );
+        addflouzz(     gameObject.getData().get(0).getCount()* gameObject.getData().get(0).getUnitaire() );
     }
 }
