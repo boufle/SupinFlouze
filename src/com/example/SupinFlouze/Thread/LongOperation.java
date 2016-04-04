@@ -35,6 +35,7 @@ public class LongOperation  {
 
                     }else {
                         flouzz+=( shop.getCount()*shop.getUnitaire());
+                        cont=1;
                     }
 
 
