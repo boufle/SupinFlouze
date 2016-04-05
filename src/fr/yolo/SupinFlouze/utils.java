@@ -50,19 +50,19 @@ public class utils {
         GameObject game = new GameObject();
 
         ArrayList <Shop> list = new ArrayList<>();
-        list.add(new Shop("Putaclic", 1,5,1.1,1));
-        list.add(new Shop("JPO", 0,50,1.2,2));
-        list.add(new Shop("Vucher/ticket", 0,100,1.3,4));
-        list.add(new Shop("Spring Break", 0,500,1.4,10));
-        list.add(new Shop("Spécialisation", 0,1000,1.5,20));
-        list.add(new Shop("KKWS", 0,2500,1.6,22));
-        list.add(new Shop("SIIS/BBDE", 0,3000,1.7,25));
-        list.add(new Shop("Propagande", 0,5000,1.8,43));
-        list.add(new Shop("Eleve", 0,6500,1.9,60));
+        list.add(new Shop("Putaclic", 1,50,1.1,1));
+        list.add(new Shop("JPO", 0,250,1.2,2));
+        list.add(new Shop("Vucher/ticket", 0,400,1.3,4));
+        list.add(new Shop("Spring Break", 0,1000,1.4,10));
+        list.add(new Shop("Spécialisation", 0,1600,1.5,20));
+        list.add(new Shop("KKWS", 0,4500,1.6,22));
+        list.add(new Shop("SIIS/BBDE", 0,7000,1.7,25));
+        list.add(new Shop("Propagande", 0,10000,1.8,43));
+        list.add(new Shop("Eleve", 0,15000,1.9,60));
         list.add(new Shop("Procès", 0,600,2.0,-100));
-        list.add(new Shop("Mug/Pins", 0,10000,1.7,100));
-        list.add(new Shop("Ferrari", 0,25000,2.1,220));
-        list.add(new Shop("Campus", 0,75000,2.5,500));
+        list.add(new Shop("Mug/Pins", 0,31000,1.7,100));
+        list.add(new Shop("Ferrari", 0,80000,2.1,220));
+        list.add(new Shop("Campus", 0,100000,2.5,500));
         game.setData(list);
         return game;
     }
