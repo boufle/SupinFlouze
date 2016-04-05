@@ -1,10 +1,13 @@
 package fr.yolo.SupinFlouze;
 
 import android.app.Activity;
+import android.app.Dialog;
 import android.content.Context;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
@@ -57,11 +60,14 @@ public class MyActivity extends Activity implements
 
         } catch (IOException e) {
 
+        }catch (NullPointerException e){
+
         }
 
 
         mGoogleApiClient.disconnect();
     }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
 
@@ -73,9 +79,7 @@ public class MyActivity extends Activity implements
         mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
-                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES) // Games
-                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .setViewForPopups(findViewById(android.R.id.content)) // SavedGames
                 .build();
 
@@ -84,7 +88,13 @@ public class MyActivity extends Activity implements
     @Override
     protected void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
+        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+            Log.w("sup",
+                    "GameHelper: client was already connected on onStart()");
+        } else {
+            Log.d("sup","Connecting client.");
+         mGoogleApiClient.connect();
+        }
 
     }
 
@@ -96,6 +106,7 @@ public class MyActivity extends Activity implements
     @Override
     public void onConnected(Bundle bundle) {
         //super.onCreate(bundle);
+        Log.d("sup","OUIII");
         setContentView(R.layout.main);
         TabHost mTabHost;
 
@@ -118,12 +129,35 @@ public class MyActivity extends Activity implements
 
     @Override
     public void onConnectionSuspended(int i) {
-
+        mGoogleApiClient.connect();
     }
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
-        GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+        Log.d("sup", String.valueOf(connectionResult.getErrorCode()));
+       // Log.d("sup",connectionResult.getErrorMessage());
 
+      //  GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
+        if (connectionResult.hasResolution()) {
+            Log.d("MyApp",connectionResult.toString());
+            try {
+
+                connectionResult.startResolutionForResult(this, 1001);
+            } catch (IntentSender.SendIntentException e) {
+                // There was an error with the resolution intent. Try again.
+                mGoogleApiClient.connect();
+            }
+        }
+    }
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Log.d("sup", String.valueOf(requestCode +" " +resultCode));
+        if (requestCode == 1001) {
+                // Make sure the app is not already connected or attempting to connect
+                if (!mGoogleApiClient.isConnecting() && !mGoogleApiClient.isConnected()) {
+                    mGoogleApiClient.connect();
+                }
+
+        }
     }
 }

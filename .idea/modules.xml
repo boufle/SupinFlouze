@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/SupinFlouze.iml" filepath="$PROJECT_DIR$/SupinFlouze.iml" />
+      <module fileurl="file://A:/Program Files (x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" filepath="A:/Program Files (x86)/Android/android-sdk/extras/google/google_play_services/libproject/google-play-services_lib/google-play-services_lib.iml" />
     </modules>
   </component>
 </project>
