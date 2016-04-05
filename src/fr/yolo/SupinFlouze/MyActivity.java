@@ -2,11 +2,13 @@ package fr.yolo.SupinFlouze;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.IntentSender;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
+import com.google.android.gms.common.GooglePlayServicesUtil;
 import com.google.android.gms.plus.Plus;
 import fr.yolo.SupinFlouze.Adaptater.*;
 import fr.yolo.SupinFlouze.Bonus.Shop;
@@ -41,6 +43,7 @@ public class MyActivity extends Activity implements
     @Override
     protected void onStop() {
 
+        super.onStop();
 
         FileOutputStream fos = null;
         try {
@@ -57,7 +60,6 @@ public class MyActivity extends Activity implements
         }
 
 
-        super.onStop();
         mGoogleApiClient.disconnect();
     }
     @Override
@@ -76,13 +78,13 @@ public class MyActivity extends Activity implements
                 .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
                 .setViewForPopups(findViewById(android.R.id.content)) // SavedGames
                 .build();
-        mGoogleApiClient.connect();
+
 
     }
     @Override
     protected void onStart() {
         super.onStart();
-
+        mGoogleApiClient.connect();
 
     }
 
@@ -121,7 +123,7 @@ public class MyActivity extends Activity implements
 
     @Override
     public void onConnectionFailed(ConnectionResult connectionResult) {
+        GooglePlayServicesUtil.getErrorDialog(connectionResult.getErrorCode(), this, 0).show();
 
-        mGoogleApiClient.connect();
     }
 }
