@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
+import com.google.android.gms.plus.Plus;
 import fr.yolo.SupinFlouze.Adaptater.*;
 import fr.yolo.SupinFlouze.Bonus.Shop;
 import fr.yolo.SupinFlouze.Thread.LongOperation;
@@ -59,25 +60,29 @@ public class MyActivity extends Activity implements
         super.onStop();
         mGoogleApiClient.disconnect();
     }
-
+    @Override
     public void onCreate(Bundle savedInstanceState) {
 
 
         super.onCreate(savedInstanceState);
 
-        mGoogleApiClient = new GoogleApiClient.Builder(this)
+        setContentView(R.layout.playservice);
+
+        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
+                .addApi(Plus.API).addScope(Plus.SCOPE_PLUS_LOGIN)
                 .addApi(Games.API).addScope(Games.SCOPE_GAMES) // Games
-                 .addScope(Drive.SCOPE_APPFOLDER) // SavedGames
+                .addApi(Drive.API).addScope(Drive.SCOPE_APPFOLDER)
+                .setViewForPopups(findViewById(android.R.id.content)) // SavedGames
                 .build();
+        mGoogleApiClient.connect();
 
-        onConnected(savedInstanceState);
     }
     @Override
     protected void onStart() {
         super.onStart();
-        mGoogleApiClient.connect();
+
 
     }
 
@@ -88,7 +93,7 @@ public class MyActivity extends Activity implements
 
     @Override
     public void onConnected(Bundle bundle) {
-        super.onCreate(bundle);
+        //super.onCreate(bundle);
         setContentView(R.layout.main);
         TabHost mTabHost;
 
