@@ -45,6 +45,13 @@ public class Shop implements Serializable {
         return prix;
     }
 
+    public Integer getprixdata(){
+        Double cefe =Math.floor(this.getPrix() + (this.getPrix() * this.getCount() *0.1)* this.getMultiplicateur()  );
+
+        return   cefe .intValue() ;
+
+    }
+
     public void setPrix(Integer prix) {
         this.prix = prix;
     }
@@ -59,5 +66,11 @@ public class Shop implements Serializable {
 
     public Integer getUnitaire() {
         return unitaire;
+    }
+
+    public Integer getprixdataone() {
+        Double cefe =Math.floor(this.getPrix() + (this.getPrix() * (this.getCount()+1) *0.1)* this.getMultiplicateur()  );
+
+        return   cefe .intValue() ;
     }
 }

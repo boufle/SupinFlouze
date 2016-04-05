@@ -5,24 +5,15 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical" >
 
-    <TextView
-            android:id="@+id/textView5"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="54dp"
-            android:text="Ceci est une application a but pédagogique, elle ne represente pas des faits/actes reels.Toutes similitudes avec des entitée vivantes ou mortes ne serait que pure coïncidence"
-            android:textAppearance="?android:attr/textAppearanceLarge" android:autoText="false"
-            android:gravity="center_vertical|center"/>
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" android:weightSum="1">
+        <ListView
+                android:id="@+id/listother" android:transcriptMode="normal"
+                android:layout_height="wrap_content"
+                android:layout_width="match_parent">
+        </ListView>
+    </LinearLayout>
 
-    <TextView
-            android:id="@+id/textView6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@+id/textView5"
-            android:layout_centerHorizontal="true"
-            android:layout_marginTop="48dp"
-            android:text="More quieter you are more able to hear"
-            android:textAppearance="?android:attr/textAppearanceMedium" />
 </RelativeLayout>

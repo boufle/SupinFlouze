@@ -4,6 +4,7 @@ import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
+import com.google.android.gms.games.Games;
 import fr.yolo.SupinFlouze.Adaptater.ListViewAdaptater;
 import fr.yolo.SupinFlouze.Bonus.GameObject;
 import fr.yolo.SupinFlouze.Bonus.Shop;
@@ -11,6 +12,8 @@ import fr.yolo.SupinFlouze.MyActivity;
 import fr.yolo.SupinFlouze.R;
 
 import java.util.*;
+
+import static fr.yolo.SupinFlouze.utils.format;
 
 /**
  * com.example.SupinFlouze.Thread
@@ -20,7 +23,7 @@ public class LongOperation  {
 
     public GameObject gameObject = new GameObject();
     private MyActivity myActivity;
-      int finalCPM = 0 ;
+    public   int finalCPM = 0 ;
     public LongOperation(GameObject gameObjectt,   MyActivity myActivity) {
 
 
@@ -44,7 +47,23 @@ public class LongOperation  {
 
 
                 }
-                  finalCPM = CPM;
+
+                if(gameObject.getSupinflouze()>= 100000000 && !gameObject.hf1){
+                    gameObject.hf1 = true;
+                    Games.Achievements.unlock(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAg");
+                }
+                if(CPM>= 1000000 && !gameObject.hf5){
+                    gameObject.hf5 = true;
+                    Games.Achievements.unlock(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQBg");
+                }
+
+
+                if(CPM!= finalCPM){
+                    Games.Leaderboards.submitScore(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAA", CPM);
+
+                }
+
+                finalCPM = CPM;
                 myActivity.runOnUiThread(new Runnable() {
                     @Override
                     public void run() {
@@ -56,7 +75,7 @@ public class LongOperation  {
                                 View ve=    myActivity.listView.getChildAt(i);
 
                                 Button button = (Button) ve.findViewById(R.id.button);
-                                if (myActivity.ope.testBuyable(gameObject.getData().get( myActivity.listView.getPositionForView(ve)).getPrix())){
+                                if (myActivity.ope.testBuyable(gameObject.getData().get( myActivity.listView.getPositionForView(ve)).getprixdata())){
                                     if(!button.isEnabled()){
                                         button.setEnabled(true);
 
@@ -108,30 +127,7 @@ public class LongOperation  {
 
     }
 
-    private static final NavigableMap<Long, String> suffixes = new TreeMap<>();
-    static {
-        suffixes.put(1_000L, "k");
-        suffixes.put(1_000_000L, "M");
-        suffixes.put(1_000_000_000L, "G");
-        suffixes.put(1_000_000_000_000L, "T");
-        suffixes.put(1_000_000_000_000_000L, "P");
-        suffixes.put(1_000_000_000_000_000_000L, "E");
-    }
 
-    public static String format(long value) {
-        //Long.MIN_VALUE == -Long.MIN_VALUE so we need an adjustment here
-        if (value == Long.MIN_VALUE) return format(Long.MIN_VALUE + 1);
-        if (value < 0) return "-" + format(-value);
-        if (value < 1000) return Long.toString(value); //deal with easy case
-
-        Map.Entry<Long, String> e = suffixes.floorEntry(value);
-        Long divideBy = e.getKey();
-        String suffix = e.getValue();
-
-        long truncated = value / (divideBy / 10); //the number part of the output times 10
-        boolean hasDecimal = truncated < 100 && (truncated / 10d) != (truncated / 10);
-        return hasDecimal ? (truncated / 10d) + suffix : (truncated / 10) + suffix;
-    }
     public void addflouzzsimple() {
         addflouzz(     gameObject.getData().get(0).getCount()* gameObject.getData().get(0).getUnitaire() );
     }

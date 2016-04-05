@@ -1,6 +1,7 @@
 package fr.yolo.SupinFlouze.Bonus;
 
 import java.io.Serializable;
+import java.security.PublicKey;
 import java.util.ArrayList;
 
 /**
@@ -10,6 +11,7 @@ import java.util.ArrayList;
 public class GameObject implements Serializable {
 
     ArrayList<Shop> data = new ArrayList<>();
+    public int countclic = 0;
 
     public GameObject() {
     }
@@ -32,4 +34,14 @@ public class GameObject implements Serializable {
     public void setData(ArrayList<Shop> data) {
         this.data = data;
     }
+
+
+
+    public Boolean hf1 = false;
+    public Boolean hf2 = false;
+    public Boolean hf3 = false;
+    public Boolean hf4 = false;
+    public Boolean hf5 = false;
+    public Boolean hf6 = false;
+
 }

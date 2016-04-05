@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import com.google.android.gms.games.Games;
 import fr.yolo.SupinFlouze.Bonus.GameObject;
 import fr.yolo.SupinFlouze.Bonus.Shop;
 import fr.yolo.SupinFlouze.MyActivity;
@@ -14,15 +15,19 @@ import fr.yolo.SupinFlouze.R;
 
 import java.util.ArrayList;
 
+import static fr.yolo.SupinFlouze.utils.format;
+
 public class ListViewAdaptater extends BaseAdapter {
 
     MyActivity context;
+    private GameObject data1;
     ArrayList<Shop> data = new ArrayList<>();
     private static LayoutInflater inflater = null;
 
     public ListViewAdaptater(MyActivity context, GameObject data) {
         // TODO Auto-generated constructor stub
         this.context = context;
+        data1 = data;
         this.data = data.getData();
         inflater = (LayoutInflater) context
                 .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
@@ -61,15 +66,15 @@ public class ListViewAdaptater extends BaseAdapter {
 
         TextView texttt = (TextView) vi.findViewById(R.id.data);
         if(position ==0){
-            texttt.setText("" + data.get(position).getPrix() +"$ / " + data.get(position).getCount()*data.get(position).getUnitaire() +"$/clic ->"+  data.get(position).getUnitaire()*(data.get(position).getCount()+1)+"$/clic" );
+            texttt.setText("" + format(data.get(position).getprixdata() ) + "$ / " + format(data.get(position).getprixdata()) + "$/clic ->" +  format(data.get(position).getprixdataone()) + "$/clic" );
 
         }else {
-            texttt.setText("" + data.get(position).getPrix() +"$ / " + data.get(position).getCount()*data.get(position).getUnitaire() +"$/s ->"+  data.get(position).getUnitaire()*(data.get(position).getCount()+1)+"$/s" );
+            texttt.setText("" + format(data.get(position).getprixdata()) + "$ / " + format(data.get(position).getprixdata()) + "$/s ->" +  format(data.get(position).getprixdataone()) + "$/s" );
         }
 
 
             Button button = (Button) vi.findViewById(R.id.button);
-            if (context.ope.testBuyable(data.get(position).getPrix())){
+            if (context.ope.testBuyable(data.get(position).getprixdata())){
                 if(!button.isEnabled()){
                     button.setEnabled(true);
 
@@ -87,13 +92,37 @@ public class ListViewAdaptater extends BaseAdapter {
             public void onClick(View v) {
                 Shop item = (Shop) data.get(position);
 
-               if (context.ope.testBuyable(item.getPrix())){
+               if (context.ope.testBuyable(item.getprixdata())){
 
-                   context.ope.removeflouzz(item.getPrix());
-                    item.setCount(item.getCount() + 1);
-                   Double value =  (item.getMultiplicateur() * item.getPrix());
+                   context.ope.removeflouzz(item.getprixdata());
+                   item.setCount(item.getCount() + 1);
+                  // Double value =  (item.getMultiplicateur() * item.getPrix());
+                  // item.setPrix(value.intValue());
 
-                    item.setPrix(value.intValue());
+
+
+
+                   if(item.getName().equals("Procès")  && !data1.hf2){
+                       if(item.getCount()>= 50){
+                           data1.hf2 = true;
+                           Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQAw");
+                       }
+                   }
+                   if(item.getName().equals("Campus")  && !data1.hf3){
+                       if(item.getCount()>= 30){
+                           data1.hf3 = true;
+                           Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQBA");
+                       }
+                   }
+                   if(item.getName().equals("JPO")  && !data1.hf6){
+                       if(item.getCount()>= 10000){
+                           data1.hf6 = true;
+                           Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQCQ");
+                       }
+                   }
+
+
+
                    notifyDataSetChanged();
                    notifyDataSetInvalidated();
                 }

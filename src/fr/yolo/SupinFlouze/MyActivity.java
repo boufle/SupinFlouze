@@ -41,7 +41,7 @@ public class MyActivity extends Activity implements
     public  ListView listView ;
 
    public LongOperation ope = null;
-    private GoogleApiClient mGoogleApiClient;
+    public GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onStop() {
@@ -99,6 +99,15 @@ public class MyActivity extends Activity implements
     }
 
     public void SupinFlouzOnClick(View view){
+        if(ope.gameObject.countclic >=1000000  && !ope.gameObject.hf4){
+
+                ope.gameObject.hf4 = true;
+                Games.Achievements.unlock(this.mGoogleApiClient, "CgkIwreR5JUGEAIQBQ");
+
+        }
+        ope.gameObject.countclic +=1;
+
+
         ope.addflouzzsimple();
     }
 
@@ -110,7 +119,9 @@ public class MyActivity extends Activity implements
         setContentView(R.layout.main);
         TabHost mTabHost;
 
-        ope = new LongOperation(getitem(getApplicationContext()), this);
+        if(ope== null){
+            ope = new LongOperation(getitem(getApplicationContext()), this);
+        }
 
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
@@ -125,6 +136,8 @@ public class MyActivity extends Activity implements
         listView = (ListView) findViewById(R.id.list);
 
         listView.setAdapter(new ListViewAdaptater(this,ope.gameObject ));
+        ListView listView1 = (ListView) findViewById(R.id.listother);
+        listView1.setAdapter(new ListViewAdaptaterother(this  ));
     }
 
     @Override

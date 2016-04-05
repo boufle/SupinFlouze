@@ -3,5 +3,12 @@
     <string name="app_name">SupinFlouze</string>
 
         <string name="app_id">212005575618</string>
-        <string name="leaderboard_best_cpm">CgkIwreR5JUGEAIQAA</string>
+    <string name="achievement_le_blues_du_flouz">CgkIwreR5JUGEAIQAg</string>
+    <string name="achievement_get_r3kt">CgkIwreR5JUGEAIQAw</string>
+    <string name="achievement_winnie_est_propritaire">CgkIwreR5JUGEAIQBA</string>
+    <string name="achievement_le_clic_cest_chic">CgkIwreR5JUGEAIQBQ</string>
+    <string name="achievement_lance_tes_sous">CgkIwreR5JUGEAIQBg</string>
+
+
+    <string name="leaderboard_best_cpm">CgkIwreR5JUGEAIQAA</string>
 </resources>
