@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SupinFlouze</string>
+
+        <string name="app_id">212005575618</string>
+        <string name="leaderboard_best_cpm">CgkIwreR5JUGEAIQAA</string>
 </resources>

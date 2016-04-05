@@ -10,6 +10,9 @@ import android.widget.*;
 import com.example.SupinFlouze.Adaptater.*;
 import com.example.SupinFlouze.Bonus.Shop;
 import com.example.SupinFlouze.Thread.LongOperation;
+import com.google.android.gms.common.ConnectionResult;
+import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.games.Games;
 
 import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
@@ -19,7 +22,9 @@ import java.util.ArrayList;
 
 import static com.example.SupinFlouze.utils.getitem;
 
-public class MyActivity extends Activity {
+public class MyActivity extends Activity implements
+        GoogleApiClient.ConnectionCallbacks,
+        GoogleApiClient.OnConnectionFailedListener{
     /**
      * Called when the activity is first created.
      *
@@ -29,6 +34,7 @@ public class MyActivity extends Activity {
     public  ListView listView ;
 
    public LongOperation ope = null;
+    private GoogleApiClient mGoogleApiClient;
 
     @Override
     protected void onStop() {
@@ -50,14 +56,39 @@ public class MyActivity extends Activity {
 
 
         super.onStop();
+        mGoogleApiClient.disconnect();
     }
 
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
+        mGoogleApiClient = new GoogleApiClient.Builder(this)
+                .addConnectionCallbacks(this)
+                .addOnConnectionFailedListener(this)
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
+                // add other APIs and scopes here as needed
+                .build();
+
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+        mGoogleApiClient.connect();
+    }
+
+    public void SupinFlouzOnClick(View view){
+        ope.addflouzzsimple();
+    }
+
+
+    @Override
+    public void onConnected(Bundle bundle) {
+        super.onCreate(bundle);
         setContentView(R.layout.main);
         TabHost mTabHost;
 
-          ope = new LongOperation(getitem(getApplicationContext()), this);
+        ope = new LongOperation(getitem(getApplicationContext()), this);
 
         mTabHost = (TabHost) findViewById(android.R.id.tabhost);
         mTabHost.setup();
@@ -72,18 +103,16 @@ public class MyActivity extends Activity {
         listView = (ListView) findViewById(R.id.list);
 
         listView.setAdapter(new ListViewAdaptater(this,ope.gameObject ));
+    }
 
-
-
-
+    @Override
+    public void onConnectionSuspended(int i) {
 
     }
 
-    public void SupinFlouzOnClick(View view){
-        ope.addflouzzsimple();
+    @Override
+    public void onConnectionFailed(ConnectionResult connectionResult) {
+
+        mGoogleApiClient.connect();
     }
-
-
-
-
 }
