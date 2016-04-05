@@ -1,4 +1,4 @@
-package com.example.SupinFlouze.Adaptater;
+package fr.yolo.SupinFlouze.Adaptater;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -7,10 +7,10 @@ import android.view.ViewGroup;
 import android.widget.BaseAdapter;
 import android.widget.Button;
 import android.widget.TextView;
-import com.example.SupinFlouze.Bonus.GameObject;
-import com.example.SupinFlouze.Bonus.Shop;
-import com.example.SupinFlouze.MyActivity;
-import com.example.SupinFlouze.R;
+import fr.yolo.SupinFlouze.Bonus.GameObject;
+import fr.yolo.SupinFlouze.Bonus.Shop;
+import fr.yolo.SupinFlouze.MyActivity;
+import fr.yolo.SupinFlouze.R;
 
 import java.util.ArrayList;
 

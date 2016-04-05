@@ -1,4 +1,4 @@
-package com.example.SupinFlouze;
+package fr.yolo.SupinFlouze;
 
 import android.app.Activity;
 import android.content.Context;
@@ -7,11 +7,12 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.View;
 import android.widget.*;
-import com.example.SupinFlouze.Adaptater.*;
-import com.example.SupinFlouze.Bonus.Shop;
-import com.example.SupinFlouze.Thread.LongOperation;
+import fr.yolo.SupinFlouze.Adaptater.*;
+import fr.yolo.SupinFlouze.Bonus.Shop;
+import fr.yolo.SupinFlouze.Thread.LongOperation;
 import com.google.android.gms.common.ConnectionResult;
 import com.google.android.gms.common.api.GoogleApiClient;
+import com.google.android.gms.drive.Drive;
 import com.google.android.gms.games.Games;
 
 import java.io.FileNotFoundException;
@@ -20,7 +21,7 @@ import java.io.IOException;
 import java.io.ObjectOutputStream;
 import java.util.ArrayList;
 
-import static com.example.SupinFlouze.utils.getitem;
+import static fr.yolo.SupinFlouze.utils.getitem;
 
 public class MyActivity extends Activity implements
         GoogleApiClient.ConnectionCallbacks,
@@ -63,18 +64,21 @@ public class MyActivity extends Activity implements
 
 
         super.onCreate(savedInstanceState);
+
         mGoogleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
                 .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES)
-                // add other APIs and scopes here as needed
+                .addApi(Games.API).addScope(Games.SCOPE_GAMES) // Games
+                 .addScope(Drive.SCOPE_APPFOLDER) // SavedGames
                 .build();
 
+        onConnected(savedInstanceState);
     }
     @Override
     protected void onStart() {
         super.onStart();
         mGoogleApiClient.connect();
+
     }
 
     public void SupinFlouzOnClick(View view){

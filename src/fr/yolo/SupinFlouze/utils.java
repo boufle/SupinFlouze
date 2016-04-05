@@ -1,8 +1,8 @@
-package com.example.SupinFlouze;
+package fr.yolo.SupinFlouze;
 
 import android.content.Context;
-import com.example.SupinFlouze.Bonus.GameObject;
-import com.example.SupinFlouze.Bonus.Shop;
+import fr.yolo.SupinFlouze.Bonus.GameObject;
+import fr.yolo.SupinFlouze.Bonus.Shop;
 
 import java.io.FileInputStream;
 import java.io.IOException;

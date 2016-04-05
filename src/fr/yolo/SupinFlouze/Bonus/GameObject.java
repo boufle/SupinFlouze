@@ -1,4 +1,4 @@
-package com.example.SupinFlouze.Bonus;
+package fr.yolo.SupinFlouze.Bonus;
 
 import java.io.Serializable;
 import java.util.ArrayList;

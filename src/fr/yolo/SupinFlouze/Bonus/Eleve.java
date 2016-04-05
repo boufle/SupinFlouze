@@ -1,4 +1,4 @@
-package com.example.SupinFlouze.Bonus;
+package fr.yolo.SupinFlouze.Bonus;
 
 /**
  * Created by Boufle on 04/04/2016.

@@ -1,14 +1,14 @@
-package com.example.SupinFlouze.Thread;
+package fr.yolo.SupinFlouze.Thread;
 
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-import com.example.SupinFlouze.Adaptater.ListViewAdaptater;
-import com.example.SupinFlouze.Bonus.GameObject;
-import com.example.SupinFlouze.Bonus.Shop;
-import com.example.SupinFlouze.MyActivity;
-import com.example.SupinFlouze.R;
+import fr.yolo.SupinFlouze.Adaptater.ListViewAdaptater;
+import fr.yolo.SupinFlouze.Bonus.GameObject;
+import fr.yolo.SupinFlouze.Bonus.Shop;
+import fr.yolo.SupinFlouze.MyActivity;
+import fr.yolo.SupinFlouze.R;
 
 import java.util.*;
 
