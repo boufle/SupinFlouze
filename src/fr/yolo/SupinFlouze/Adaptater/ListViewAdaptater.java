@@ -66,10 +66,10 @@ public class ListViewAdaptater extends BaseAdapter {
 
         TextView texttt = (TextView) vi.findViewById(R.id.data);
         if(position ==0){
-            texttt.setText("" + format(data.get(position).getprixdata() ) + "$ / " + format(data.get(position).getprixdata()) + "$/clic ->" +  format(data.get(position).getprixdataone()) + "$/clic" );
+            texttt.setText("" + format(data.get(position).getprixdata() ) + "$ / " + format(data.get(position).getCount()*data.get(position).getUnitaire()) + "$/clic ->" +  format(data.get(position).getUnitaire()*(data.get(position).getCount()+1)) + "$/clic" );
 
         }else {
-            texttt.setText("" + format(data.get(position).getprixdata()) + "$ / " + format(data.get(position).getprixdata()) + "$/s ->" +  format(data.get(position).getprixdataone()) + "$/s" );
+            texttt.setText("" + format(data.get(position).getprixdata()) + "$ / " + format(data.get(position).getCount()*data.get(position).getUnitaire()) + "$/s ->" +  format(data.get(position).getUnitaire()*(data.get(position).getCount()+1)) + "$/s" );
         }
 
 
