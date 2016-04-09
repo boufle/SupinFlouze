@@ -67,7 +67,7 @@ public class LongOperation  {
 
 
                     if (CPM != finalCPM) {
-                        Games.Leaderboards.submitScore(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAA", CPM);
+                        Games.Leaderboards.submitScore(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQCg", CPM);
 
                     }
                 }
