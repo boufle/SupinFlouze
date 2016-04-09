@@ -38,6 +38,7 @@ public class MyActivity extends Activity implements
      */
 
 
+    public static Boolean debug = Boolean.FALSE;
     public  ListView listView ;
 
    public LongOperation ope = null;
@@ -64,8 +65,10 @@ public class MyActivity extends Activity implements
 
         }
 
+        if(!debug){
+            mGoogleApiClient.disconnect();
+        }
 
-        mGoogleApiClient.disconnect();
     }
 
     @Override
@@ -73,27 +76,34 @@ public class MyActivity extends Activity implements
 
 
         super.onCreate(savedInstanceState);
+        if(debug){
+            onConnected(savedInstanceState);
+        }else {
+            setContentView(R.layout.playservice);
 
-        setContentView(R.layout.playservice);
+            mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
+                    .addConnectionCallbacks(this)
+                    .addOnConnectionFailedListener(this)
+                    .addApi(Games.API).addScope(Games.SCOPE_GAMES) // Games
+                    .setViewForPopups(findViewById(android.R.id.content)) // SavedGames
+                    .build();
 
-        mGoogleApiClient = new GoogleApiClient.Builder(getApplicationContext())
-                .addConnectionCallbacks(this)
-                .addOnConnectionFailedListener(this)
-                .addApi(Games.API).addScope(Games.SCOPE_GAMES) // Games
-                .setViewForPopups(findViewById(android.R.id.content)) // SavedGames
-                .build();
+        }
+
 
 
     }
     @Override
     protected void onStart() {
         super.onStart();
-        if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
-            Log.w("sup",
-                    "GameHelper: client was already connected on onStart()");
-        } else {
-            Log.d("sup","Connecting client.");
-         mGoogleApiClient.connect();
+        if(!debug){
+            if (mGoogleApiClient != null && mGoogleApiClient.isConnected()) {
+                Log.w("sup",
+                        "GameHelper: client was already connected on onStart()");
+            } else {
+                Log.d("sup","Connecting client.");
+             mGoogleApiClient.connect();
+            }
         }
 
     }
@@ -107,7 +117,8 @@ public class MyActivity extends Activity implements
         }
         ope.gameObject.countclic +=1;
 
-
+       TextView txt = (TextView) findViewById(R.id.hint);
+        txt.setVisibility(View.GONE);
         ope.addflouzzsimple();
     }
 
@@ -129,7 +140,7 @@ public class MyActivity extends Activity implements
 
         mTabHost.addTab(mTabHost.newTabSpec("tab_test1").setIndicator("JEU").setContent(R.id.tab1));
         mTabHost.addTab(mTabHost.newTabSpec("tab_test2").setIndicator("SHOP").setContent(R.id.tab2));
-        mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("Disclamer").setContent(R.id.tab3));
+        mTabHost.addTab(mTabHost.newTabSpec("tab_test3").setIndicator("Menu").setContent(R.id.tab3));
 
         mTabHost.setCurrentTab(0);
 

@@ -3,6 +3,8 @@ package fr.yolo.SupinFlouze.Adaptater;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -80,6 +82,13 @@ public class ListViewAdaptaterother extends BaseAdapter {
                                 }
                             });
                     alertDialog.show();
+                }else if(position == 3){
+                    final String appPackageName = context.getPackageName(); // getPackageName() from Context or Activity object
+                    try {
+                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("market://details?id=" + appPackageName)));
+                    } catch (android.content.ActivityNotFoundException anfe) {
+                        context.startActivity(new Intent(Intent.ACTION_VIEW, Uri.parse("https://play.google.com/store/apps/details?id=" + appPackageName)));
+                    }
                 }
             }
         });

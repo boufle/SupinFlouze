@@ -7,7 +7,7 @@ import java.io.Serializable;
  * Created by Theo on 04/04/2016 for SupinFlouze.
  */
 public class Shop implements Serializable {
-
+    static final long serialVersionUID = 402L;
     public String name ;
     public Integer count;
     public Integer prix;
@@ -46,7 +46,7 @@ public class Shop implements Serializable {
     }
 
     public Integer getprixdata(){
-        Double cefe =Math.floor(this.getPrix() + (this.getPrix() * this.getCount() *0.1)* this.getMultiplicateur()  );
+        Double cefe =Math.floor(this.getPrix() * Math.pow(this.getMultiplicateur(),this.getCount())  );
 
         return   cefe .intValue() ;
 

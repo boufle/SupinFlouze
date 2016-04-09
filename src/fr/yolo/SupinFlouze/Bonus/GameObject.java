@@ -9,6 +9,7 @@ import java.util.ArrayList;
  * Created by Theo on 04/04/2016 for SupinFlouze.
  */
 public class GameObject implements Serializable {
+    static final long serialVersionUID = 4210L;
 
     ArrayList<Shop> data = new ArrayList<>();
     public int countclic = 0;

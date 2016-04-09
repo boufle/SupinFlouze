@@ -100,28 +100,28 @@ public class ListViewAdaptater extends BaseAdapter {
                   // item.setPrix(value.intValue());
 
 
+                   if(!MyActivity.debug) {
 
-
-                   if(item.getName().equals("Procès")  && !data1.hf2){
-                       if(item.getCount()>= 50){
-                           data1.hf2 = true;
-                           Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQAw");
+                       if (item.getName().equals("Procès") && !data1.hf2) {
+                           if (item.getCount() >= 50) {
+                               data1.hf2 = true;
+                               Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQAw");
+                           }
                        }
-                   }
-                   if(item.getName().equals("Campus")  && !data1.hf3){
-                       if(item.getCount()>= 30){
-                           data1.hf3 = true;
-                           Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQBA");
+                       if (item.getName().equals("Campus") && !data1.hf3) {
+                           if (item.getCount() >= 30) {
+                               data1.hf3 = true;
+                               Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQBA");
+                           }
                        }
-                   }
-                   if(item.getName().equals("JPO")  && !data1.hf6){
-                       if(item.getCount()>= 10000){
-                           data1.hf6 = true;
-                           Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQCQ");
+                       if (item.getName().equals("JPO") && !data1.hf6) {
+                           if (item.getCount() >= 10000) {
+                               data1.hf6 = true;
+                               Games.Achievements.unlock(context.mGoogleApiClient, "CgkIwreR5JUGEAIQCQ");
+                           }
                        }
+
                    }
-
-
 
                    notifyDataSetChanged();
                    notifyDataSetInvalidated();

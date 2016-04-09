@@ -1,5 +1,7 @@
 package fr.yolo.SupinFlouze.Thread;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.AsyncTask;
 import android.view.View;
 import android.widget.Button;
@@ -20,6 +22,7 @@ import static fr.yolo.SupinFlouze.utils.format;
  * Created by Theo on 04/04/2016 for SupinFlouze.
  */
 public class LongOperation  {
+    Random r = new Random();
 
     public GameObject gameObject = new GameObject();
     private MyActivity myActivity;
@@ -48,19 +51,25 @@ public class LongOperation  {
 
                 }
 
-                if(gameObject.getSupinflouze()>= 100000000 && !gameObject.hf1){
-                    gameObject.hf1 = true;
-                    Games.Achievements.unlock(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAg");
-                }
-                if(CPM>= 1000000 && !gameObject.hf5){
-                    gameObject.hf5 = true;
-                    Games.Achievements.unlock(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQBg");
-                }
 
 
-                if(CPM!= finalCPM){
-                    Games.Leaderboards.submitScore(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAA", CPM);
 
+
+                if(!MyActivity.debug) {
+                    if (gameObject.getSupinflouze() >= 100000000 && !gameObject.hf1) {
+                        gameObject.hf1 = true;
+                        Games.Achievements.unlock(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAg");
+                    }
+                    if (CPM >= 1000000 && !gameObject.hf5) {
+                        gameObject.hf5 = true;
+                        Games.Achievements.unlock(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQBg");
+                    }
+
+
+                    if (CPM != finalCPM) {
+                        Games.Leaderboards.submitScore(myActivity.mGoogleApiClient, "CgkIwreR5JUGEAIQAA", CPM);
+
+                    }
                 }
 
                 finalCPM = CPM;
@@ -94,6 +103,21 @@ public class LongOperation  {
                         }
 
 
+
+                        if ((r.nextInt(150-1) + 1) == 2 && (gameObject.getData().get(9).getUnitaire()*gameObject.getData().get(9).getCount()) > finalCPM ){
+                            AlertDialog alertDialog = new AlertDialog.Builder(myActivity).create();
+                            alertDialog.setTitle("POLICE");
+                            alertDialog.setMessage("Un procès furtif est apparu ");
+                            alertDialog.setButton(AlertDialog.BUTTON_NEUTRAL, "Je prend !",
+                                    new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int which) {
+                                            gameObject.getData().get(9).count++;
+                                            dialog.dismiss();
+                                        }
+                                    });
+                            alertDialog.show();
+
+                        }
 
 
                     }
