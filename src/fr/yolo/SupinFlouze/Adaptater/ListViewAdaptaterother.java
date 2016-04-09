@@ -66,7 +66,7 @@ public class ListViewAdaptaterother extends BaseAdapter {
             public void onClick(View v) {
                 if(position==0){
                     context.startActivityForResult(Games.Leaderboards.getLeaderboardIntent(context.mGoogleApiClient,
-                            "CgkIwreR5JUGEAIQAA"), 1);
+                            "CgkIwreR5JUGEAIQCg"), 1);
                 }else if(position == 1){
                     context.startActivityForResult(Games.Achievements.getAchievementsIntent(
                             context.mGoogleApiClient), 10001);
